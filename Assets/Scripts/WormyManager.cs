@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class WormyManager : MonoBehaviour
 {
@@ -11,8 +12,14 @@ public class WormyManager : MonoBehaviour
 
     private int currentWormy;
 
+    float currentTime = 0f;
+    float startingTime = 10f;
+
+    [SerializeField] Text countdownText;
+
     void Start()
     {
+        currentTime = startingTime;
         if (singleton != null)
         {
             Destroy(gameObject);
@@ -40,7 +47,7 @@ public class WormyManager : MonoBehaviour
         var nextWorm = currentWormy + 1;
         currentWormy = -1;
 
-        yield return new WaitForSeconds(2);
+        yield return new WaitForSeconds(1);
 
         currentWormy = nextWorm;
         if (currentWormy >= wormies.Length)
@@ -54,8 +61,26 @@ public class WormyManager : MonoBehaviour
 
 
     public bool IsMyTurn(int i)
-    {
+    {   
+       
         return i == currentWormy;
     }
 
+    
+    void Update()
+    {
+        
+        currentTime -= 1 * Time.deltaTime;
+        countdownText.text = currentTime.ToString("0");
+
+        if (currentTime <= 0)
+        {
+            currentTime = 30;
+            singleton.NextWorm();
+        }
+          if(Input.GetKeyDown(KeyCode.Q))
+        {
+            currentTime = 30;
+        }
+    }
 }
