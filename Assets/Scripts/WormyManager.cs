@@ -66,7 +66,7 @@ public class WormyManager : MonoBehaviour
         return i == currentWormy;
     }
 
-    
+   
     void Update()
     {
         
@@ -82,5 +82,6 @@ public class WormyManager : MonoBehaviour
         {
             currentTime = 30;
         }
+        
     }
 }

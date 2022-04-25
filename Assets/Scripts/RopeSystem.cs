@@ -52,6 +52,8 @@ public class RopeSystem : MonoBehaviour
     private Dictionary<Vector2, int> wrapPointsLookup = new Dictionary<Vector2, int>();
     private SpriteRenderer ropeHingeAnchorSprite;
 
+   
+
     void Awake ()
     {
         ropeJoint.enabled = false;
@@ -80,6 +82,7 @@ public class RopeSystem : MonoBehaviour
     // Update is called once per frame
     void Update ()
 	{
+       
         var worldMousePosition = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 0f));
         var facingDirection = worldMousePosition - transform.position;
         var aimAngle = Mathf.Atan2(facingDirection.y, facingDirection.x);
@@ -115,6 +118,7 @@ public class RopeSystem : MonoBehaviour
                         var closestPointToHit = GetClosestColliderPointFromRaycastHit(playerToCurrentNextHit, colliderWithVertices);
                         if (wrapPointsLookup.ContainsKey(closestPointToHit))
                         {
+                           
                             // Reset the rope if it wraps around an 'already wrapped' position.
                             ResetRope();
                             return;
@@ -176,7 +180,7 @@ public class RopeSystem : MonoBehaviour
     /// <summary>
     /// Resets the rope in terms of gameplay, visual, and supporting variable values.
     /// </summary>
-    private void ResetRope()
+    public void ResetRope()
     {
         ropeJoint.enabled = false;
         ropeAttached = false;
