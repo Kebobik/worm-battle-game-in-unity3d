@@ -64,7 +64,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if (horizontalInput < 0f || horizontalInput > 0f)
         {
-            animator.SetFloat("Speed", Mathf.Abs(horizontalInput));
+            //animator.SetFloat("Speed", Mathf.Abs(horizontalInput));
             playerSprite.flipX = horizontalInput < 0f;
             if (isSwinging)
             {
