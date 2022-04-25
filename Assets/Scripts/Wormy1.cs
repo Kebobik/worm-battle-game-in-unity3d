@@ -1,15 +1,15 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Wormy : MonoBehaviour
+public class Wormy1 : MonoBehaviour
 {
     public Rigidbody2D bulletPrefab;
     public Transform currentGun;
 
     public float wormySpeed = 1;
     public float maxRelativeVelocity;
-    public float misileForce = 5; 
+    public float misileForce = 5;
 
     public bool IsTurn { get { return WormyManager.singleton.IsMyTurn(wormId); } }
 
@@ -37,17 +37,6 @@ public class Wormy : MonoBehaviour
 
             ren.flipX = currentGun.eulerAngles.z < 180;
 
-            if (Input.GetKeyDown(KeyCode.Q))
-            {
-                var p = Instantiate(bulletPrefab,
-                                   currentGun.position - currentGun.right,
-                                   currentGun.rotation);
-
-                p.AddForce(-currentGun.right * misileForce, ForceMode2D.Impulse);
-
-                if (IsTurn)
-                    WormyManager.singleton.NextWorm();
-            }
             if (Input.GetKeyDown(KeyCode.E))
             {
                 var p = Instantiate(bulletPrefab,
@@ -66,8 +55,8 @@ public class Wormy : MonoBehaviour
             transform.position += Vector3.right *
                                 hor *
                                 Time.deltaTime *
-                                wormySpeed;            
-             ren.flipX = Input.GetAxis("Horizontal") > 0;
+                                wormySpeed;
+            ren.flipX = Input.GetAxis("Horizontal") > 0;
         }
 
     }
@@ -86,9 +75,9 @@ public class Wormy : MonoBehaviour
         if (collision.relativeVelocity.magnitude > maxRelativeVelocity)
         {
             wormyHealth.ChangeHealth(-3);
-           // if (IsTurn)
-              //  WormyManager.singleton.NextWorm();
-        }  
+            if (IsTurn)
+                WormyManager.singleton.NextWorm();
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -96,9 +85,9 @@ public class Wormy : MonoBehaviour
         if (collision.CompareTag("Explosion"))
         {
             wormyHealth.ChangeHealth(-10);
-           // if (IsTurn)
-             //   WormyManager.singleton.NextWorm();
+            if (IsTurn)
+                WormyManager.singleton.NextWorm();
         }
-            
+
     }
 }

@@ -82,6 +82,10 @@ public class WormyManager : MonoBehaviour
         {
             currentTime = 30;
         }
-        
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            currentTime = 30;
+        }
+
     }
 }
