@@ -9,7 +9,7 @@ public class Wormy : MonoBehaviour
     public Transform currentGun1;
     public Rigidbody2D bulletPrefab1;
     public Rigidbody2D Grenade;
-
+   
     public float wormySpeed = 1;
     public float maxRelativeVelocity;
     public float misileForce = 5; 
@@ -20,41 +20,17 @@ public class Wormy : MonoBehaviour
     WormyHealth wormyHealth;
     SpriteRenderer ren;
 
-    private Dictionary<KeyCode, bool> keys = new Dictionary<KeyCode, bool>();
 
     private void Start()
     {
+        
         wormyHealth = GetComponent<WormyHealth>();
         ren = GetComponent<SpriteRenderer>();
     }
 
-    private bool GetKeyDown(Keycode keyCode)
-    {
-        if (!keys.ContainsKey(keyCode)
-            keys.Add(keyCode, true);
-        return Input.GetKeyDown(keyCode) && keys[keyCode];
-    }
-
-    // Do the same for GetKey and GetKeyUp
-
-    private void DisableKey(KeyCode keyCode)
-    {
-        if (!keys.ContainsKey(keyCode)
-            keys.Add(keyCode, false);
-        else
-            keys[keyCode] = false;
-    }
-
-    private void EnableKey(KeyCode keyCode)
-    {
-        if (!keys.ContainsKey(keyCode)
-            keys.Add(keyCode, true);
-        else
-            keys[keycode] = true;
-    }
-
     private void Update()
     {
+        
         if (!IsTurn)
             return;
 
@@ -63,12 +39,20 @@ public class Wormy : MonoBehaviour
         var hor = Input.GetAxis("Horizontal");
         if (hor == 0)
         {
-           
-
             ren.flipX = currentGun.eulerAngles.z < 180;
             ren.flipX = currentGun1.eulerAngles.z < 180;
-
-            if (Input.GetKeyDown(KeyCode.Q))
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                bulletPrefab.gameObject.SetActive(true);
+                currentGun.gameObject.SetActive(false);
+                currentGun1.gameObject.SetActive(true);
+            }
+            else 
+            {
+                
+               
+            }
+                if (Input.GetKeyDown(KeyCode.Q))
             {
                 currentGun.gameObject.SetActive(true);
                 currentGun1.gameObject.SetActive(false);
