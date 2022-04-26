@@ -127,12 +127,16 @@ public class GroundScript : MonoBehaviour
     {
 
         if (!collision.CompareTag("Explosion"))
-            return;
+            if (!collision.CompareTag("Explosion1"))
+                if (!collision.CompareTag("Grenade"))
+                    return;
+        
         if (!collision.GetComponent<CircleCollider2D>())
             return;
 
         MakeAHole(collision.GetComponent<CircleCollider2D>());
         Destroy(collision.gameObject, 0.1f);
     }
+   
 
 }

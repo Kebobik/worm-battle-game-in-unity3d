@@ -5,6 +5,8 @@ TagManager:
   serializedVersion: 2
   tags:
   - Explosion
+  - Explosion1
+  - Grenade
   layers:
   - Default
   - TransparentFX
