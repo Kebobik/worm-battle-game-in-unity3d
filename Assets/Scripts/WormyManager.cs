@@ -64,7 +64,6 @@ public class WormyManager : MonoBehaviour
 
     public bool IsMyTurn(int i)
     {   
-       
         return i == currentWormy;
     }
 
