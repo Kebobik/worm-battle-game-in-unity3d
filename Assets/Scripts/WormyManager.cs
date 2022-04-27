@@ -13,12 +13,14 @@ public class WormyManager : MonoBehaviour
     private int currentWormy;
 
     float currentTime = 0f;
-    float startingTime = 10f;
+    float startingTime = 1f;
+
 
     [SerializeField] Text countdownText;
 
     void Start()
     {
+        
         currentTime = startingTime;
         if (singleton != null)
         {
@@ -74,12 +76,12 @@ public class WormyManager : MonoBehaviour
         countdownText.text = currentTime.ToString("0");
 
         if (currentTime <= 0)
-        {
-            currentTime = 30;
+        {                     
             singleton.NextWorm();
+            currentTime = 30;
         }
           if(Input.GetKeyDown(KeyCode.Q))
-        {
+        {   
             currentTime = 30;
         }
         if (Input.GetKeyDown(KeyCode.E))
@@ -90,6 +92,9 @@ public class WormyManager : MonoBehaviour
         {
             currentTime = 30;
         }
-
+        if (Input.GetMouseButton(1))
+        {
+            currentTime = 30;
+        }
     }
 }

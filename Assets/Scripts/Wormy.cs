@@ -19,11 +19,18 @@ public class Wormy : MonoBehaviour
     public int wormId;
     WormyHealth wormyHealth;
     SpriteRenderer ren;
+    private RopeSystem RP;
+    private LineRenderer LN;
+    private DistanceJoint2D DJ;
+
+
 
 
     private void Start()
     {
-        
+        LN = GetComponent<LineRenderer>();
+        RP = GetComponent<RopeSystem>();
+        DJ = GetComponent<DistanceJoint2D>();
         wormyHealth = GetComponent<WormyHealth>();
         ren = GetComponent<SpriteRenderer>();
     }
@@ -32,20 +39,30 @@ public class Wormy : MonoBehaviour
     {
         
         if (!IsTurn)
+        {
+                RP.enabled = false;
+                LN.enabled = false;
+                DJ.enabled = false;
             return;
+        }
+            
 
         RotateGun();
 
         var hor = Input.GetAxis("Horizontal");
         if (hor == 0)
         {
+            
             ren.flipX = currentGun.eulerAngles.z < 180;
             ren.flipX = currentGun1.eulerAngles.z < 180;
             if (Input.GetKeyDown(KeyCode.Space))
             {
-                bulletPrefab.gameObject.SetActive(true);
-                currentGun.gameObject.SetActive(false);
-                currentGun1.gameObject.SetActive(true);
+                
+                // bulletPrefab.gameObject.SetActive(true);
+                //  currentGun.gameObject.SetActive(false);
+                //  currentGun1.gameObject.SetActive(true);
+                 RP.enabled = !RP.enabled;
+                 LN.enabled = !RP.enabled;
             }
             else 
             {
@@ -56,7 +73,8 @@ public class Wormy : MonoBehaviour
             {
                 currentGun.gameObject.SetActive(true);
                 currentGun1.gameObject.SetActive(false);
-                var p = Instantiate(bulletPrefab,
+                
+               var p = Instantiate(bulletPrefab,
                                    currentGun.position - currentGun.right,
                                    currentGun.rotation);
 
@@ -102,6 +120,11 @@ public class Wormy : MonoBehaviour
                                 Time.deltaTime *
                                 wormySpeed;            
              ren.flipX = Input.GetAxis("Horizontal") > 0;
+        }
+        if (Input.GetMouseButton(1))
+        {
+            if (IsTurn)
+                WormyManager.singleton.NextWorm();
         }
 
     }

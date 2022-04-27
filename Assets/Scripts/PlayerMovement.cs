@@ -62,10 +62,19 @@ public class PlayerMovement : MonoBehaviour
 
     void FixedUpdate()
     {
-        if (horizontalInput < 0f || horizontalInput > 0f)
+       
+
+        if (horizontalInput > 0f || horizontalInput < 0f)
         {
             //animator.SetFloat("Speed", Mathf.Abs(horizontalInput));
-            playerSprite.flipX = horizontalInput < 0f;
+            if (Input.GetAxisRaw("Horizontal") > 0)
+        {
+            playerSprite.flipX = true;
+        }
+        else if (Input.GetAxisRaw("Horizontal") < 0)
+        {
+            playerSprite.flipX = false;
+        }
             if (isSwinging)
             {
                 animator.SetBool("IsSwinging", true);
