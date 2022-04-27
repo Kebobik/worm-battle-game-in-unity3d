@@ -13,7 +13,7 @@ public class WormyManager : MonoBehaviour
     private int currentWormy;
 
     float currentTime = 0f;
-    float startingTime = 1f;
+    float startingTime = 0f;
 
 
     [SerializeField] Text countdownText;
