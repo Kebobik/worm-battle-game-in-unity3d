@@ -57,7 +57,7 @@ public class WormyManager : MonoBehaviour
             currentWormy = 0;
         }
 
-        wormyCamera.SetParent(wormies[currentWormy].transform);
+       wormyCamera.SetParent(wormies[currentWormy].transform);
         wormyCamera.localPosition = Vector3.zero + Vector3.back * 10;
     }
 
