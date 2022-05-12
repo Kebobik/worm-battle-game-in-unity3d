@@ -7,6 +7,7 @@ TagManager:
   - Explosion
   - Explosion1
   - Grenade
+  - Border
   layers:
   - Default
   - TransparentFX

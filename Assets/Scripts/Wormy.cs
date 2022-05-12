@@ -37,7 +37,6 @@ public class Wormy : MonoBehaviour
 
     private void Update()
     {
-        
         if (!IsTurn)
         {
                 RP.enabled = false;
@@ -143,7 +142,7 @@ public class Wormy : MonoBehaviour
     {
         if (collision.relativeVelocity.magnitude > maxRelativeVelocity)
         {
-            wormyHealth.ChangeHealth(-3);
+            wormyHealth.ChangeHealth(-10);
            // if (IsTurn)
               //  WormyManager.singleton.NextWorm();
         }  

@@ -9,7 +9,7 @@ public class WormyManager : MonoBehaviour
     public Transform wormyCamera;
 
     public static WormyManager singleton;
-
+    public static bool isGameOver;
     private int currentWormy;
 
     float currentTime = 0f;
@@ -20,7 +20,7 @@ public class WormyManager : MonoBehaviour
 
     void Start()
     {
-        
+        isGameOver = false;
         currentTime = startingTime;
         if (singleton != null)
         {
@@ -70,7 +70,6 @@ public class WormyManager : MonoBehaviour
    
     void Update()
     {
-        
         currentTime -= 1 * Time.deltaTime;
         countdownText.text = currentTime.ToString("0");
 
@@ -95,5 +94,6 @@ public class WormyManager : MonoBehaviour
         {
             currentTime = 30;
         }
+        
     }
 }
