@@ -54,6 +54,7 @@ public class WormyManager : MonoBehaviour
         currentWormy = nextWorm;
         if (currentWormy >= wormies.Length)
         {
+            
             currentWormy = 0;
         }
 

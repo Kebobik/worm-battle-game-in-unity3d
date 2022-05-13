@@ -29,7 +29,7 @@ public class WormyHealth : MonoBehaviour
     {
         if (health <= 0)
         {
-            WormyManager.isGameOver = true;
+            //WormyManager.isGameOver = true;
             gameObject.SetActive(false);
         }
     }
@@ -38,7 +38,7 @@ public class WormyHealth : MonoBehaviour
     {
         if (collision.transform.tag == "Border")
         {
-            WormyManager.isGameOver = true;
+            //WormyManager.isGameOver = true;
             gameObject.SetActive(false);
         }
     }
