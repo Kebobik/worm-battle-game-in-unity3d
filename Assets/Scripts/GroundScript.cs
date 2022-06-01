@@ -58,7 +58,7 @@ public class GroundScript : MonoBehaviour
     {
         sr = GetComponent<SpriteRenderer>();
         cloneTexture = Instantiate(baseTexture);
-        cloneTexture.alphaIsTransparency = true;
+       // cloneTexture.alphaIsTransparency = true;
 
         if (cloneTexture.format != TextureFormat.ARGB32)
             Debug.LogWarning("Texture must be ARGB32");
